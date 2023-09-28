@@ -169,7 +169,37 @@ def back2():
 @app.route("/portfolio", methods=['POST'])
 def portfolio():
     return render_template('portfolio.html')
-    
+
+#searh to person1 page
+@app.route("/person1", methods=['POST'])
+def person1():
+    return render_template('person1.html')
+
+#searh to person2 page
+@app.route("/person2", methods=['POST'])
+def person2():
+    return render_template('person2.html')
+
+ #searh to person3 page
+@app.route("/person3", methods=['POST'])
+def person3():
+    return render_template('person3.html')       
+
+ #searh to person4 page
+@app.route("/person4", methods=['POST'])
+def person4():
+    return render_template('person4.html')   
+
+ #searh to person5 page
+@app.route("/person5", methods=['POST'])
+def person5():
+    return render_template('person5.html')  
+
+ #searh to person6 page
+@app.route("/person6", methods=['POST'])
+def person6():
+    return render_template('person6.html')  
+
 
 # search emp page - search emp function to search
 @app.route("/livesearch", methods=["POST", "GET"])
