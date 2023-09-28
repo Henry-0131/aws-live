@@ -41,8 +41,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person1" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <image height="100%" preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-aurora.png"></image>
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/MyPicture1.jpg'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -50,8 +52,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person2" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <img style="max-height:400px" class="img-fluid rounded w-100" src="img/MyPicture2.jpeg" alt="">
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/MyPicture2.jpeg'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -59,8 +63,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person3" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <img style="max-height:400px" class="img-fluid rounded w-100" src="img/MyPicture3.jpeg" alt="">
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/MyPicture3.jpeg'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -68,8 +74,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person4" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <img style="max-height:400px" class="img-fluid rounded w-100" src="img/MyPicture4.jpeg" alt="">
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/MyPicture4.jpeg'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -77,8 +85,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person5" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <img style="max-height:400px" class="img-fluid rounded w-100" src="img/MyPicture5.jpeg" alt="">
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/MyPicture5.jpeg'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -86,8 +96,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
                         <div class="position-relative overflow-hidden mb-2">
                             <form action="/person6" method="post">
-                                <button style="min-height:400px; min-width:350px; border:none;" >
-                                    <img style="min-height:400px" class="img-fluid rounded w-100" src="img/profile.png" alt="">
+                                <button style="height:400px; width:350px; border:none;" >
+                                    <svg style="height:400px; width:350px;">
+                                    <image height='100%' preserveAspectRatio='none' width='100%' xlink:href='https://chongkaowei-bucket.s3.amazonaws.com/templates/img/profile.png'></image>
+                                    </svg>
                                 </button>
                             </form>
                         </div>
@@ -143,3 +155,55 @@
     </body>
 
 </html>
+
+<script>
+    var items = []
+            , point = document.querySelector('svg').createSVGPoint();
+
+    function getCoordinates(e, svg) {
+        point.x = e.clientX;
+        point.y = e.clientY;
+        return point.matrixTransform(svg.getScreenCTM().inverse());
+    }
+
+    function changeColor(e) {
+        document.body.className = e.currentTarget.className;
+    }
+
+    function Item(config) {
+        Object.keys(config).forEach(function (item) {
+            this[item] = config[item];
+        }, this);
+        this.el.addEventListener('mousemove', this.mouseMoveHandler.bind(this));
+        this.el.addEventListener('touchmove', this.touchMoveHandler.bind(this));
+    }
+
+    Item.prototype = {
+        update: function update(c) {
+            this.clip.setAttribute('cx', c.x);
+            this.clip.setAttribute('cy', c.y);
+        },
+        mouseMoveHandler: function mouseMoveHandler(e) {
+            this.update(getCoordinates(e, this.svg));
+        },
+        touchMoveHandler: function touchMoveHandler(e) {
+            e.preventDefault();
+            var touch = e.targetTouches[0];
+            if (touch)
+                return this.update(getCoordinates(touch, this.svg));
+        }
+    };
+
+    [].slice.call(document.querySelectorAll('.item'), 0).forEach(function (item, index) {
+        items.push(new Item({
+            el: item,
+            svg: item.querySelector('svg'),
+            clip: document.querySelector('#clip-' + index + ' circle'),
+        }));
+    });
+
+    [].slice.call(document.querySelectorAll('button'), 0).forEach(function (button) {
+        button.addEventListener('click', changeColor);
+    });
+
+</script>
