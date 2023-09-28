@@ -1,0 +1,6 @@
+customhost = "internwebsite.cp1i7ednddox.us-east-1.rds.amazonaws.com"
+customuser = "admin"
+custompass = "admin123"
+customdb = "InternWebsite"
+custombucket = "chongkaowei-bucket"
+customregion = "us-east-1"
